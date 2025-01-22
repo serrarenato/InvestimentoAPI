@@ -1,0 +1,25 @@
+version: "3.8"
+services:
+  db:
+    image: postgres:13
+    container_name: b3_investment_db
+    environment:
+      POSTGRES_DB: investimento
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+  investimento-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+
+volumes:
+  db-data:
