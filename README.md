@@ -1,40 +1,49 @@
-# Investimento API
+# Investment API
 
-## Descrição
+## Description
 
-A **Investimento API** é uma aplicação desenvolvida em Java com Spring Boot, permitindo aos usuários gerenciar suas transações de ações e FIIs da B3. A API oferece funcionalidades para registrar compras e vendas, calcular quantidades, preços médios, e exibir o valor atual das ações.
+The **Investment API** is a Java-based application using Spring Boot that allows users to manage their transactions of stocks and REITs listed on B3. The API provides functionalities to record buy and sell transactions, calculate quantities, average prices, and display the current value of stocks.
 
-## Pré-requisitos
+## Prerequisites
 
 - Java 11+
-- Docker e Docker Compose
+- Docker and Docker Compose
 - PostgreSQL
 
-## Configuração do Projeto
+## Technologies Used
 
-### Passos para Configuração
+- Java
+- Spring Boot
+- Spring Data JPA
+- Flyway
+- Lombok
+- PostgreSQL
+- Docker
 
-1. **Clone o Repositório**
+## Project Setup
+
+### Steps to Setup
+
+1. **Clone the Repository**
     ```bash
-    git clone https://github.com/seu-usuario/investimento-api.git
-    cd investimento-api
+    git clone https://github.com/your-username/investment-api.git
+    cd investment-api
     ```
 
-2. **Configurar o Banco de Dados com Docker Compose**
+2. **Setup the Database with Docker Compose**
     ```bash
     docker-compose up db
     ```
 
-3. **Rodar a Aplicação**
-    - No IntelliJ (ou sua IDE preferida), abra o projeto e execute `InvestimentoApiApplication.java`.
+3. **Run the Application**
+    - In IntelliJ (or your preferred IDE), open the project and run `InvestimentoApiApplication.java`.
 
+### API Usage
 
-### Uso da API
-
-#### Registrar Transação
+#### Register Transaction
 
 - **Endpoint**: `POST /transacoes`
-- **Body da Requisição**:
+- **Request Body**:
     ```json
     {
         "ticker": "PETR4",
@@ -45,16 +54,78 @@ A **Investimento API** é uma aplicação desenvolvida em Java com Spring Boot, 
     }
     ```
 
-#### Obter Portfólio
+- **cURL Command**:
+    ```bash
+    curl -X POST http://localhost:8080/transacoes \
+    -H "Content-Type: application/json" \
+    -H "Authorization: Bearer YOUR_JWT_TOKEN" \
+    -d '{
+        "ticker": "PETR4",
+        "quantidade": 50,
+        "valor": 28.50,
+        "tipo": "compra",
+        "dataHora": "2023-09-15T14:30:00"
+    }'
+    ```
+
+#### Get Portfolio
 
 - **Endpoint**: `GET /transacoes/portfolio`
 
-### Scripts de Migração do Banco de Dados
+- **cURL Command**:
+    ```bash
+    curl -X GET http://localhost:8080/transacoes/portfolio \
+    -H "Authorization: Bearer YOUR_JWT_TOKEN"
+    ```
 
-Os scripts de migração são gerenciados pelo Flyway e localizados em `src/main/resources/db/migration`.
+### Authentication and Authorization
 
-### Contato
+The API uses JWT (JSON Web Tokens) for authentication and authorization.
 
-Para qualquer dúvida ou suporte, entre em contato com [serra.renato@gmail.com](mailto:serra.renato@gmail.com).
+#### Register a New User
 
----
+- **Endpoint**: `POST /auth/register`
+- **Request Body**:
+    ```json
+    {
+        "username": "testuser",
+        "password": "testpassword"
+    }
+    ```
+
+- **cURL Command**:
+    ```bash
+    curl -X POST http://localhost:8080/auth/register \
+    -H "Content-Type: application/json" \
+    -d '{
+        "username": "testuser",
+        "password": "testpassword"
+    }'
+    ```
+
+#### User Login
+
+- **Endpoint**: `POST /auth/login`
+- **Request Body**:
+    ```json
+    {
+        "username": "testuser",
+        "password": "testpassword"
+    }
+    ```
+
+- **cURL Command**:
+    ```bash
+    curl -X POST http://localhost:8080/auth/login \
+    -H "Content-Type: application/json" \
+    -d '{
+        "username": "testuser",
+        "password": "testpassword"
+    }'
+    ```
+
+This will return a JWT token, for example:
+```json
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+}
