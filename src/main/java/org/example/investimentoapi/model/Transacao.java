@@ -16,4 +16,7 @@ public class Transacao {
     private double valor;
     private String tipo; // "compra" ou "venda"
     private LocalDateTime dataHora;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 }

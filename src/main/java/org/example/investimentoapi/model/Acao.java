@@ -12,4 +12,5 @@ public class Acao {
     @Id
     private String ticker;
     private String nome;
+    private String setor;
 }

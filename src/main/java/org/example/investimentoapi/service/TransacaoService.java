@@ -1,36 +1,44 @@
 package org.example.investimentoapi.service;
 
-import org.example.investimentoapi.model.Acao;
+import org.example.investimentoapi.dto.TransacaoResponse;
 import org.example.investimentoapi.model.Transacao;
-import org.example.investimentoapi.repository.AcaoRepository;
+import org.example.investimentoapi.model.User;
 import org.example.investimentoapi.repository.TransacaoRepository;
+import org.example.investimentoapi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class TransacaoService {
     @Autowired
-    private AcaoRepository acaoRepository;
-
-    @Autowired
     private TransacaoRepository transacaoRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
     public String registrarTransacao(Transacao transacao) throws Exception {
-        Optional<Acao> acaoOpt = acaoRepository.findById(transacao.getTicker());
-        if (!acaoOpt.isPresent()) {
-            return "Ação não cadastrada";
+        String currentUsername = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userRepository.findByUsername(currentUsername);
+        if (user == null) {
+            throw new UsernameNotFoundException("User not found");
         }
 
-        // Salvar a transação no banco de dados
+        transacao.setUser(user);
         transacaoRepository.save(transacao);
 
         return "Transação registrada com sucesso";
     }
 
-    public List<Acao> getPortfolio() {
-        return acaoRepository.findAll();
+    public List<Transacao> getPortfolio(String username) throws Exception {
+        User user = userRepository.findByUsername(username);
+        if (user == null) {
+            throw new UsernameNotFoundException("User not found");
+        }
+        List<Transacao> transacoes =transacaoRepository.findByUser(user);
+        return transacoes;
     }
 }

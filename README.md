@@ -19,6 +19,9 @@ The **Investment API** is a Java-based application using Spring Boot that allows
 - Lombok
 - PostgreSQL
 - Docker
+- Spring Security
+- Mapper
+- mapstruct
 
 ## Project Setup
 

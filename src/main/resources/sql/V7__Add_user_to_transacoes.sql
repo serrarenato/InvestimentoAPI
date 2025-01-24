@@ -1,0 +1,9 @@
+ALTER TABLE transacoes ADD COLUMN user_id BIGINT;
+ALTER TABLE transacoes ADD CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users(id);
+CREATE TABLE IF NOT EXISTS fiis (
+    id SERIAL PRIMARY KEY,
+    ticker VARCHAR(10) UNIQUE NOT NULL,
+    nome VARCHAR(100) NOT NULL,
+    setor VARCHAR(50)
+);
+ALTER TABLE acoes ADD COLUMN setor VARCHAR(50);
