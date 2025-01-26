@@ -20,8 +20,8 @@ The **Investment API** is a Java-based application using Spring Boot that allows
 - PostgreSQL
 - Docker
 - Spring Security
-- Mapper
-- mapstruct
+- Model Mapper
+
 
 ## Project Setup
 
@@ -43,6 +43,8 @@ The **Investment API** is a Java-based application using Spring Boot that allows
 
 ### API Usage
 
+The API allows for the following actions:
+
 #### Register Transaction
 
 - **Endpoint**: `POST /transacoes`
@@ -57,29 +59,17 @@ The **Investment API** is a Java-based application using Spring Boot that allows
     }
     ```
 
-- **cURL Command**:
-    ```bash
-    curl -X POST http://localhost:8080/transacoes \
-    -H "Content-Type: application/json" \
-    -H "Authorization: Bearer YOUR_JWT_TOKEN" \
-    -d '{
-        "ticker": "PETR4",
-        "quantidade": 50,
-        "valor": 28.50,
-        "tipo": "compra",
-        "dataHora": "2023-09-15T14:30:00"
-    }'
-    ```
-
 #### Get Portfolio
 
 - **Endpoint**: `GET /transacoes/portfolio`
 
-- **cURL Command**:
-    ```bash
-    curl -X GET http://localhost:8080/transacoes/portfolio \
-    -H "Authorization: Bearer YOUR_JWT_TOKEN"
-    ```
+#### Get Stocks with Average and Current Price
+
+- **Endpoint**: `GET /transacoes/acoes-preco-medio`
+
+#### Get REITs with Average Price
+
+- **Endpoint**: `GET /transacoes/fiis-preco-medio`
 
 ### Authentication and Authorization
 
@@ -96,16 +86,6 @@ The API uses JWT (JSON Web Tokens) for authentication and authorization.
     }
     ```
 
-- **cURL Command**:
-    ```bash
-    curl -X POST http://localhost:8080/auth/register \
-    -H "Content-Type: application/json" \
-    -d '{
-        "username": "testuser",
-        "password": "testpassword"
-    }'
-    ```
-
 #### User Login
 
 - **Endpoint**: `POST /auth/login`
@@ -117,18 +97,12 @@ The API uses JWT (JSON Web Tokens) for authentication and authorization.
     }
     ```
 
-- **cURL Command**:
-    ```bash
-    curl -X POST http://localhost:8080/auth/login \
-    -H "Content-Type: application/json" \
-    -d '{
-        "username": "testuser",
-        "password": "testpassword"
-    }'
-    ```
-
 This will return a JWT token, for example:
 ```json
 {
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
 }
+   ```
+## Postman Collection
+
+- You can find a Postman collection with all the API endpoints in the root directory of the project: **API.postman_collection.json**

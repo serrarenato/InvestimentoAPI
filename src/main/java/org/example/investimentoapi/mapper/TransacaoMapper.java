@@ -2,16 +2,31 @@ package org.example.investimentoapi.mapper;
 
 import org.example.investimentoapi.dto.TransacaoResponse;
 import org.example.investimentoapi.model.Transacao;
-import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
-@Mapper
-public interface TransacaoMapper {
-    TransacaoMapper INSTANCE = Mappers.getMapper(TransacaoMapper.class);
+@Component
+public class TransacaoMapper {
 
-    TransacaoResponse toDto(Transacao transacao);
 
-    List<TransacaoResponse> toDto(List<Transacao> transacoes);
+    private ModelMapper modelMapper;
+    @Autowired
+    public TransacaoMapper(ModelMapper modelMapper) {
+        this.modelMapper = modelMapper;
+    }
+
+    public TransacaoResponse toDto(Transacao transacao) {
+        return modelMapper.map(transacao, TransacaoResponse.class);
+    }
+
+    public List<TransacaoResponse> toDto(List<Transacao> transacoes) {
+        return transacoes.stream()
+                .map(this::toDto)
+                .collect(Collectors.toList());
+    }
 }
+

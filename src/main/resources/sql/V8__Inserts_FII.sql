@@ -35,10 +35,7 @@ INSERT INTO fiis (ticker, nome, setor) VALUES
 ('XPPR11', 'XP Properties', 'Lajes Corporativas'),
 ('BBFI11B', 'BB Fundo de Investimento Imobiliário Progressivo', 'Agências Bancárias'),
 ('DEVA11', 'Devant Recebíveis Imobiliários', 'Recebíveis Imobiliários'),
-('HSML11', 'Hedge Shopping Malls', 'Shoppings'),
 ('AFCR11', 'AGFI CRI', 'Recebíveis Imobiliários'),
-('HGLG11', 'CSHG Logística', 'Logística'),
 ('HLOG11', 'CSHG Logística', 'Logística'),
 ('HSRE11', 'Hedge Shopping Renda Educacional', 'Renda Imobiliária');
 
--- Continue adicionando mais FIIs conforme necessário
