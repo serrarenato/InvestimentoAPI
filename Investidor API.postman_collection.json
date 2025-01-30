@@ -84,6 +84,58 @@
 						"description": "Generated from cURL: curl -X POST http://localhost:8080/fiis \\\r\n     -H \"Content-Type: application/json\" \\\r\n     -H \"Authorization: Bearer YOUR_JWT_TOKEN\" \\\r\n     -d '{\r\n            \"ticker\": \"HGLG11\",\r\n            \"nome\": \"CSHG Logística\",\r\n            \"setor\": \"Logística\"\r\n         }'\r\n"
 					},
 					"response": []
+				},
+				{
+					"name": "Run Job",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/run-job",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"run-job"
+							]
+						},
+						"description": "Generated from cURL: curl http://localhost:8080/run-job"
+					},
+					"response": []
+				},
+				{
+					"name": "Run Job Fii",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/run-job-fii",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"run-job-fii"
+							]
+						},
+						"description": "Generated from cURL: curl http://localhost:8080/run-job"
+					},
+					"response": []
 				}
 			]
 		},
@@ -337,6 +389,60 @@
 					]
 				},
 				"description": "Generated from cURL: curl -X GET http://localhost:8080/fiis \\\r\n     -H \"Authorization: Bearer YOUR_JWT_TOKEN\"\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Preço medio Acao",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/transacoes/acoes-preco-medio",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"transacoes",
+						"acoes-preco-medio"
+					]
+				},
+				"description": "Generated from cURL: curl -X GET http://localhost:8080/transacoes/acoes-preco-medio\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Preço medio Fii",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/transacoes/acoes-preco-medio",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"transacoes",
+						"acoes-preco-medio"
+					]
+				},
+				"description": "Generated from cURL: curl -X GET http://localhost:8080/transacoes/acoes-preco-medio\r\n"
 			},
 			"response": []
 		}
