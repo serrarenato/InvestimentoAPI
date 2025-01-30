@@ -106,3 +106,6 @@ This will return a JWT token, for example:
 ## Postman Collection
 
 - You can find a Postman collection with all the API endpoints in the root directory of the project: **API.postman_collection.json**
+
+## Swagger
+- http://localhost:8080/swagger-ui/
