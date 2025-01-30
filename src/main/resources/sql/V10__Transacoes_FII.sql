@@ -7,4 +7,5 @@ CREATE TABLE public.transacoes_fii (
     data_hora TIMESTAMP NOT NULL,
     user_id INT NOT NULL,
     CONSTRAINT fk_user_id_fii FOREIGN KEY (user_id) REFERENCES public.users (id),
-    CONSTRAINT fk_ticker_fii FOREIGN KEY (ticker) REFERENCES public.fiis (ticker)
+    CONSTRAINT fk_ticker_fii FOREIGN KEY (ticker) REFERENCES public.fii (ticker)
+);
